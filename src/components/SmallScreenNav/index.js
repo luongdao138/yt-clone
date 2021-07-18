@@ -25,7 +25,7 @@ const SmallScreenNav = () => {
           </IconLink>
         </Icon>
         <Icon>
-          <IconLink to='/' big>
+          <IconLink to='/' big='true'>
             <MdAddCircleOutline />
           </IconLink>
         </Icon>

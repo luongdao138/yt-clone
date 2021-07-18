@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdMic, MdMenu } from 'react-icons/md';
+import { BsArrowLeft } from 'react-icons/bs';
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -89,6 +90,10 @@ export const SearchInput = styled.input`
   &:focus {
     border: 1px solid #1277bf;
   }
+
+  @media (max-width: 500px) {
+    padding-right: 12px;
+  }
 `;
 
 export const SearchButton = styled.button`
@@ -104,6 +109,10 @@ export const SearchButton = styled.button`
   font-size: 18px;
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 export const SearchIcon = styled(AiOutlineSearch)`
@@ -113,6 +122,14 @@ export const SearchIcon = styled(AiOutlineSearch)`
 export const Micro = styled(MdMic)`
   font-size: 24px;
   color: var(--white-color);
+  cursor: pointer;
+`;
+
+export const BackToNav = styled(BsArrowLeft)`
+  font-size: 24px;
+  color: var(--white-color);
+  margin-right: 16px;
+  cursor: pointer;
 `;
 
 export const Icon = styled.div`

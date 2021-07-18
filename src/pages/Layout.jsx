@@ -11,6 +11,7 @@ const Context = createContext();
 
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
   return (
     <Context.Provider
@@ -18,6 +19,9 @@ const Layout = ({ children }) => {
         isSidebarOpen,
         openSidebar: () => setIsSidebarOpen(true),
         closeSidebar: () => setIsSidebarOpen(false),
+        isSearchbarOpen,
+        openSearchbar: () => setIsSearchbarOpen(true),
+        closeSearchbar: () => setIsSearchbarOpen(false),
       }}
     >
       <Navbar />
@@ -38,6 +42,7 @@ const Wrapper = styled.div`
 
   @media (max-width: 500px) {
     margin-left: 0;
+    margin-bottom: 56px;
   }
 `;
 export const useLayoutContext = () => useContext(Context);
