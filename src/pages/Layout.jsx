@@ -5,6 +5,7 @@ import { createContext } from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import SmallScreenNav from '../components/SmallScreenNav';
 
 const Context = createContext();
 
@@ -21,6 +22,7 @@ const Layout = ({ children }) => {
     >
       <Navbar />
       <Sidebar />
+      <SmallScreenNav />
       <Wrapper>{children}</Wrapper>
     </Context.Provider>
   );
@@ -32,6 +34,10 @@ const Wrapper = styled.div`
   background-color: var(--primary-color);
   ::-webkit-scrollbar-track {
     background-color: var(--primary-color);
+  }
+
+  @media (max-width: 500px) {
+    margin-left: 0;
   }
 `;
 export const useLayoutContext = () => useContext(Context);

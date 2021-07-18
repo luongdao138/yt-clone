@@ -26,6 +26,10 @@ export const Thumbnail = styled.img`
 `;
 export const InfoWrapper = styled.div`
   display: flex;
+
+  @media (max-width: 500px) {
+    padding: 0 8px;
+  }
 `;
 export const ChannelLink = styled(Link)`
   display: block;

@@ -6,6 +6,10 @@ export const Wrapper = styled.div`
   background-color: var(--secondary-color);
   top: 56px;
   height: calc(100vh - 56px);
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 export const SidebarList = styled.ul``;

@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   color: var(--white-color);
   /* overflow-x: auto; */
   background-color: var(--secondary-color);
+
+  @media (max-width: 450px) {
+    padding: 0 7px;
+  }
 `;
 
 export const Content = styled.div`

@@ -16,6 +16,10 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 450px) {
+    padding: 0 12px;
+  }
 `;
 
 export const Section = styled.div`
@@ -38,15 +42,18 @@ export const SectionCenter = styled.div`
 export const Menu = styled(MdMenu)`
   color: var(--white-color);
   font-size: 24px;
-  margin-right: 5px;
+  margin-right: 25px;
   cursor: pointer;
+  @media (max-width: 450px) {
+    display: none;
+  }
 `;
 
 export const Logo = styled.a`
   display: flex;
   height: 100%;
   align-items: center;
-  padding: 0 20px;
+  padding-right: 20px;
 `;
 
 export const LogoIcon = styled.img`
@@ -113,8 +120,18 @@ export const Icon = styled.div`
   font-size: 24px;
   color: var(--white-color);
   margin-left: 25px;
-  display: flex;
+  display: ${({ disappear }) => (disappear ? 'none' : 'flex')};
   align-items: center;
+  cursor: pointer;
+
+  @media (max-width: 750px) {
+    margin-left: 12px;
+    display: ${({ resp }) => (resp ? 'none' : 'flex')};
+  }
+
+  @media (max-width: 450px) {
+    margin-left: 12px;
+  }
 `;
 
 export const Avatar = styled.img`
@@ -123,4 +140,7 @@ export const Avatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin-left: 25px;
+  @media (max-width: 450px) {
+    margin-left: 12px;
+  }
 `;
