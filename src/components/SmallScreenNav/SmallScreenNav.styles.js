@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   z-index: 100;
   border-top: 1px solid #373737;
 
-  @media (min-width: 500px) {
+  @media (min-width: 501px) {
     display: none;
   }
 `;
