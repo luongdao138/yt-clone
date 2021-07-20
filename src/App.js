@@ -15,7 +15,7 @@ const App = () => {
           </Layout>
         </Route>
         <Route path='/watch' exact>
-          <Layout disappearSidebar>
+          <Layout disappearSidebar disappearSmallScreenNav disappearNavbar>
             <VideoDetail />
           </Layout>
         </Route>

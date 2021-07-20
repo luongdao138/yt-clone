@@ -1,37 +1,62 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import DescModal from '../components/DescModal';
+import VideoChannel from '../components/VideoChannel';
 import VideoFeed from '../components/VideoFeed';
 import VideoInfo from '../components/VideoInfo';
 import VideoThumbnail from '../components/VideoThumbnail';
 
 const VideoDetail = () => {
+  const [showDesc, setShowDesc] = useState(false);
+
   return (
     <Wrapper>
+      <VideoDescModal showDesc={showDesc}>
+        <DescModal
+          setShowDesc={setShowDesc}
+          title='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
+        />
+      </VideoDescModal>
       <Left>
         <VideoThumbnail youtubeLink='/TsUjSkzQ9ko' />
-        <VideoInfo
-          videoTitle='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
-          view='2.4M'
-          release_date='Sep 24, 2017'
-        />
-      </Left>
-      <Right>
-        <Grid>
-          {[...new Array(10)].map((_, index) => (
-            <VideoFeed
-              key={index}
-              image='https://i.ytimg.com/vi/IdkcGXZU6vo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBF2GkxIeBSIW-RrDqbnLWqwkVb2A'
-              duration='41:32'
-              chanelImage='https://yt3.ggpht.com/ytc/AKedOLTKFq-spzNWb84uFEZbJdHM-s6C_nkw3_Gmm_l9=s68-c-k-c0x00ffffff-no-rj'
-              title='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
-              channelName='Uni Drama'
-              view='1M'
-              release_time='3 weeks ago'
-              horizontal={true}
+        {!showDesc && (
+          <>
+            <VideoInfo
+              videoTitle='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
+              view='2.4M'
+              release_date='Sep 24, 2017'
+              showDesc={showDesc}
+              setShowDesc={setShowDesc}
             />
-          ))}
-        </Grid>
-      </Right>
+            <VideoChannel
+              image='https://yt3.ggpht.com/ytc/AKedOLQPwQ8OrCuTjD4I4IPXph9X1kPZk4nSssROgpNzIA=s88-c-k-c0x00ffffff-no-rj'
+              channelName='BLV Anh Quân'
+              subscriber='7.36k'
+              isSubscribe={false}
+            />
+          </>
+        )}
+      </Left>
+      {!showDesc && (
+        <Right>
+          <Grid>
+            {[...new Array(10)].map((_, index) => (
+              <VideoFeed
+                key={index}
+                image='https://i.ytimg.com/vi/IdkcGXZU6vo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBF2GkxIeBSIW-RrDqbnLWqwkVb2A'
+                duration='41:32'
+                chanelImage='https://yt3.ggpht.com/ytc/AKedOLTKFq-spzNWb84uFEZbJdHM-s6C_nkw3_Gmm_l9=s68-c-k-c0x00ffffff-no-rj'
+                title='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
+                channelName='Uni Drama'
+                view='1M'
+                release_time='3 weeks ago'
+                horizontal={true}
+              />
+            ))}
+          </Grid>
+        </Right>
+      )}
     </Wrapper>
   );
 };
@@ -76,6 +101,19 @@ const Right = styled.div`
 const Grid = styled.div`
   display: grid;
   row-gap: 8px;
+`;
+
+const VideoDescModal = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.2s;
+  background-color: var(--primary-color);
+  /* background-color: red; */
+  z-index: 50;
+  height: ${({ showDesc }) => (showDesc ? 'calc(100vh - 175px)' : '0')};
+  overflow-y: auto;
 `;
 
 export default VideoDetail;

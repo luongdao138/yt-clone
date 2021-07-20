@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   z-index: 100;
   background-color: var(--secondary-color);
   border-bottom: 1px solid var(--border-color);
+
+  @media (max-width: 500px) {
+    display: ${({ disappearNavbar }) => (disappearNavbar ? 'none' : 'block')};
+  }
 `;
 
 export const Content = styled.div`

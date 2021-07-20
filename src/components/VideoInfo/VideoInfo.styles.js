@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  @media (max-width: 700px) {
-    padding: 0 20px;
-  }
+  position: relative;
   @media (max-width: 500px) {
-    padding: 0 10px;
+    padding: 0;
   }
 `;
 
@@ -22,6 +20,8 @@ export const Title = styled.p`
   margin-bottom: 8px;
   margin-top: 16px;
   @media (max-width: 500px) {
+    margin-right: 50px;
+    padding: 0 10px;
     margin-top: 8px;
     overflow: hidden;
     display: -webkit-box;
@@ -61,7 +61,9 @@ export const Info = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #9090903b;
+
   @media (max-width: 500px) {
+    padding: 0 10px;
     border-bottom: none;
   }
 `;
@@ -95,21 +97,13 @@ export const Icon = styled.li`
   }
 `;
 
-// export const SmallScreenIconWrapper = styled.div`
-//   width: 100%;
-//   padding: 10px 0;
-//   border-bottom: 1px solid #9090903b;
-//   overflow-x: auto;
-// `;
-
-// export const SmallIcon = styled.div`
-//   width: 100px;
-// `;
-
 export const SmallScreenIconWrapper = styled.div`
   border-bottom: 1px solid #9090903b;
-  padding: 10px 0;
   color: var(--white-color);
+
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
 
   @media (min-width: 501px) {
     display: none;
@@ -120,6 +114,7 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   overflow-x: auto;
+  padding: 10px 0;
   height: 100%;
 `;
 
@@ -135,4 +130,35 @@ export const SmallIcon = styled.button`
     font-size: 18px;
     color: var(--white-color);
   }
+`;
+
+export const HideDesc = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 65px;
+  z-index: 5;
+  cursor: pointer;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
+`;
+
+export const IconShowDesc = styled.span`
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  color: var(--white-color);
+`;
+
+export const VideoDescModal = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 250px;
+  background-color: var(--primary-color);
+  z-index: 50;
 `;

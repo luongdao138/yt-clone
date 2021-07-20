@@ -22,11 +22,11 @@ import { BsCameraVideoFill } from 'react-icons/bs';
 import YTLogo from '../../assets/youtube-logo-2431.svg';
 import { useLayoutContext } from '../../pages/Layout';
 
-const Navbar = () => {
+const Navbar = ({ disappearNavbar }) => {
   const { openSidebar, isSearchbarOpen, openSearchbar, closeSearchbar } =
     useLayoutContext();
   return (
-    <Wrapper>
+    <Wrapper disappearNavbar={disappearNavbar}>
       <Content>
         {!isSearchbarOpen ? (
           <>

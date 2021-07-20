@@ -9,7 +9,12 @@ import SmallScreenNav from '../components/SmallScreenNav';
 
 const Context = createContext();
 
-const Layout = ({ children, disappearSidebar }) => {
+const Layout = ({
+  children,
+  disappearSidebar,
+  disappearSmallScreenNav,
+  disappearNavbar,
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
@@ -24,10 +29,15 @@ const Layout = ({ children, disappearSidebar }) => {
         closeSearchbar: () => setIsSearchbarOpen(false),
       }}
     >
-      <Navbar />
+      <Navbar disappearNavbar={disappearNavbar} />
       <Sidebar disappear={disappearSidebar} />
-      <SmallScreenNav />
-      <Wrapper>{children}</Wrapper>
+      <SmallScreenNav disappearSmallScreenNav={disappearSmallScreenNav} />
+      <Wrapper
+        disappearSmallScreenNav={disappearSmallScreenNav}
+        disappearNavbar={disappearNavbar}
+      >
+        {children}
+      </Wrapper>
     </Context.Provider>
   );
 };
@@ -42,7 +52,9 @@ const Wrapper = styled.div`
 
   @media (max-width: 500px) {
     margin-left: 0;
-    margin-bottom: 56px;
+    margin-bottom: ${({ disappearSmallScreenNav }) =>
+      disappearSmallScreenNav ? '0' : '56px'};
+    margin-top: ${({ disappearNavbar }) => (disappearNavbar ? '0' : '56px')};
   }
 `;
 export const useLayoutContext = () => useContext(Context);
