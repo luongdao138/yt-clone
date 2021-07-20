@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export const Wrapper = styled.div`
   position: fixed;
   background-color: var(--secondary-color);
+  z-index: 100;
+  width: 72px;
   top: 56px;
   height: calc(100vh - 56px);
 

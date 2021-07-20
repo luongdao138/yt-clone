@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   padding: 0px 19px;
   height: 56px;
   color: var(--white-color);
-  /* overflow-x: auto; */
   background-color: var(--secondary-color);
 
   @media (max-width: 450px) {
@@ -15,7 +14,6 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  /* padding: 12px 0; */
   align-items: center;
   overflow-x: auto;
   height: 100%;

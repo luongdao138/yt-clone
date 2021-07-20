@@ -10,6 +10,7 @@ import {
   Thumbnail,
   Detail,
   Divider,
+  SideText,
 } from './VideoFeed.styles';
 
 const VideoFeed = ({
@@ -20,25 +21,29 @@ const VideoFeed = ({
   channelName,
   release_time,
   view,
+  horizontal,
 }) => {
   return (
-    <Wrapper>
-      <ThumbnailWrapper to='/'>
+    <Wrapper horizontal={horizontal}>
+      <ThumbnailWrapper to='/' horizontal={horizontal}>
         <Thumbnail src={image} />
         <span>{duration}</span>
       </ThumbnailWrapper>
-      <InfoWrapper>
-        <ChannelLink>
+      <InfoWrapper horizontal={horizontal}>
+        <ChannelLink horizontal={horizontal}>
           <img src={chanelImage} alt='' />
         </ChannelLink>
         <Link to='/' style={{ padding: '8px 0' }}>
-          <Title>{title}</Title>
-          <InfoText>{channelName}</InfoText>
-          <Detail>
-            <InfoText>{view} views</InfoText>
-            <Divider />
-            <InfoText>{release_time}</InfoText>
-          </Detail>
+          <Title horizontal={horizontal}>{title}</Title>
+          <SideText>
+            <InfoText>{channelName}</InfoText>
+            <Divider disappear />
+            <Detail>
+              <InfoText horizontal={horizontal}>{view} views</InfoText>
+              <Divider />
+              <InfoText horizontal={horizontal}>{release_time}</InfoText>
+            </Detail>
+          </SideText>
         </Link>
       </InfoWrapper>
     </Wrapper>

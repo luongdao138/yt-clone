@@ -16,6 +16,7 @@ const HomeFeed = () => {
             channelName='Uni Drama'
             view='1M'
             release_time='3 weeks ago'
+            horizontal={false}
           />
         ))}
       </Content>

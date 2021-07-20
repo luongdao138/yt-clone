@@ -1,9 +1,18 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: ${({ horizontal }) => (horizontal ? 'row' : 'column')};
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+`;
 export const ThumbnailWrapper = styled(Link)`
   position: relative;
+  width: ${({ horizontal }) => (horizontal ? '50%' : '100%')};
+  margin-right: ${({ horizontal }) => (horizontal ? '8px' : '0')};
 
   span {
     position: absolute;
@@ -18,6 +27,11 @@ export const ThumbnailWrapper = styled(Link)`
     opacity: 0.9;
     border-radius: 2px;
   }
+
+  @media (max-width: 450px) {
+    width: 100%;
+    margin-right: 0;
+  }
 `;
 export const Thumbnail = styled.img`
   width: 100%;
@@ -26,13 +40,17 @@ export const Thumbnail = styled.img`
 `;
 export const InfoWrapper = styled.div`
   display: flex;
-
+  width: ${({ horizontal }) => (horizontal ? '50%' : '100%')};
   @media (max-width: 500px) {
     padding: 0 8px;
   }
+
+  @media (max-width: 450px) {
+    width: 100%;
+  }
 `;
 export const ChannelLink = styled(Link)`
-  display: block;
+  display: ${({ horizontal }) => (horizontal ? 'none' : 'block')};
   padding: 8px 0;
   padding-right: 10px;
 
@@ -42,11 +60,15 @@ export const ChannelLink = styled(Link)`
     object-fit: cover;
     border-radius: 50%;
   }
+
+  @media (max-width: 450px) {
+    display: block;
+  }
 `;
 export const Title = styled.p`
   color: var(--white-color);
   font-weight: 500;
-  font-size: 14px;
+  font-size: ${({ horizontal }) => (horizontal ? '13px' : '14px')};
   line-height: 20px;
   overflow: hidden;
   display: -webkit-box;
@@ -54,9 +76,24 @@ export const Title = styled.p`
   -webkit-box-orient: vertical;
   margin-bottom: 4px;
 `;
+
+export const SideText = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (min-width: 450px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
 export const InfoText = styled.span`
   color: var(--grey-color);
-  font-size: 14px;
+  font-size: ${({ horizontal }) => (horizontal ? '13px' : '14px')};
+
+  @media (max-width: 450px) {
+    font-size: 12px;
+  }
 `;
 export const Detail = styled.div`
   display: flex;
@@ -69,4 +106,8 @@ export const Divider = styled.div`
   height: 3.5px;
   border-radius: 50%;
   background-color: var(--grey-color);
+
+  @media (min-width: 450px) {
+    display: ${({ disappear }) => (disappear ? 'none' : 'block')};
+  }
 `;

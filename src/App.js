@@ -3,6 +3,7 @@ import GlobalStyle from './GlobalStyle';
 import HomePage from './pages/HomePage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './pages/Layout';
+import VideoDetail from './pages/VideoDetail';
 
 const App = () => {
   return (
@@ -11,6 +12,11 @@ const App = () => {
         <Route path='/' exact>
           <Layout>
             <HomePage />
+          </Layout>
+        </Route>
+        <Route path='/watch' exact>
+          <Layout disappearSidebar>
+            <VideoDetail />
           </Layout>
         </Route>
       </Switch>

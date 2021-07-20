@@ -9,7 +9,7 @@ import SmallScreenNav from '../components/SmallScreenNav';
 
 const Context = createContext();
 
-const Layout = ({ children }) => {
+const Layout = ({ children, disappearSidebar }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
       }}
     >
       <Navbar />
-      <Sidebar />
+      <Sidebar disappear={disappearSidebar} />
       <SmallScreenNav />
       <Wrapper>{children}</Wrapper>
     </Context.Provider>
