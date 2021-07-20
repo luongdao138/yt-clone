@@ -131,10 +131,6 @@ export const SmallIcon = styled.button`
   background-color: var(--primary-color);
   padding: 6px 25px;
 
-  :first-child {
-    padding-left: 10px;
-  }
-
   svg {
     font-size: 18px;
     color: var(--white-color);
