@@ -141,7 +141,7 @@ export const HideDesc = styled.div`
   z-index: 5;
   cursor: pointer;
 
-  @media (min-width: 500px) {
+  @media (min-width: 450px) {
     display: none;
   }
 `;

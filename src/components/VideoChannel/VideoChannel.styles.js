@@ -30,7 +30,7 @@ export const ChannelLink = styled(Link)`
     border-radius: 50%;
     object-fit: cover;
     margin-right: 12px;
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
       width: 36px;
       height: 36px;
     }
@@ -56,7 +56,7 @@ export const Button = styled.button`
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
-  @media (max-width: 500px) {
+  @media (max-width: 499px) {
     background-color: transparent;
     padding: 0;
     /* color: var(--red-color); */
@@ -69,9 +69,10 @@ export const Description = styled.div`
   color: var(--white-color);
   font-size: 14px;
   margin-left: 62px;
+  margin-top: 10px;
   line-height: 22px;
 
-  @media (max-width: 500px) {
+  @media (max-width: 450px) {
     display: none;
   }
 `;
