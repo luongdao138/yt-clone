@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     }
 
     @media (max-width: 450px) {
-      height: 175px;
+      height: 190px;
     }
   }
 `;

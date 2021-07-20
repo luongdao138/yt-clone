@@ -112,7 +112,7 @@ const VideoDescModal = styled.div`
   background-color: var(--primary-color);
   /* background-color: red; */
   z-index: 50;
-  height: ${({ showDesc }) => (showDesc ? 'calc(100vh - 175px)' : '0')};
+  height: ${({ showDesc }) => (showDesc ? 'calc(100vh - 190px)' : '0')};
   overflow-y: auto;
 `;
 
