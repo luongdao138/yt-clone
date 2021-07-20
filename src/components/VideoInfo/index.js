@@ -49,6 +49,14 @@ const VideoInfo = ({ videoTitle, view, release_date }) => {
             <CgPlayListAdd />
             <span>Save</span>
           </Icon>
+          <Icon fontsize='28px'>
+            <CgPlayListAdd />
+            <span>Save</span>
+          </Icon>
+          <Icon fontsize='28px'>
+            <CgPlayListAdd />
+            <span>Save</span>
+          </Icon>
         </IconWrapper>
       </Info>
       <SmallScreenIconWrapper>

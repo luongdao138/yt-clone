@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
   @media (max-width: 700px) {
-    padding: 0 0px;
+    padding: 0 20px;
   }
 `;
 
@@ -121,6 +121,8 @@ export const Content = styled.div`
 `;
 
 export const SmallIcon = styled.button`
+  /* display: flex;
+  flex-direction: column; */
   display: block;
   color: var(--white-color);
   background-color: var(--primary-color);

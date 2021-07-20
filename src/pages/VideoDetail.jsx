@@ -44,6 +44,10 @@ const Wrapper = styled.div`
     flex-direction: column;
     padding: 0 20px;
   }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    padding: 0px;
+  }
 `;
 
 const Left = styled.div`
