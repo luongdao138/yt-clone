@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
   @media (max-width: 700px) {
     padding: 0 20px;
   }
+  @media (max-width: 500px) {
+    padding: 0 10px;
+  }
 `;
 
 export const Title = styled.p`
