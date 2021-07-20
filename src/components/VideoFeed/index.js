@@ -25,15 +25,15 @@ const VideoFeed = ({
 }) => {
   return (
     <Wrapper horizontal={horizontal}>
-      <ThumbnailWrapper to='/' horizontal={horizontal}>
+      <ThumbnailWrapper to='/watch' horizontal={horizontal}>
         <Thumbnail src={image} />
         <span>{duration}</span>
       </ThumbnailWrapper>
       <InfoWrapper horizontal={horizontal}>
-        <ChannelLink horizontal={horizontal}>
+        <ChannelLink horizontal={horizontal} to='/'>
           <img src={chanelImage} alt='' />
         </ChannelLink>
-        <Link to='/' style={{ padding: '8px 0' }}>
+        <Link to='/watch' style={{ padding: '8px 0' }}>
           <Title horizontal={horizontal}>{title}</Title>
           <SideText>
             <InfoText>{channelName}</InfoText>
