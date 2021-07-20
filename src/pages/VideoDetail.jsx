@@ -59,6 +59,9 @@ const Left = styled.div`
     margin-left: 0;
     padding-right: 0;
   }
+  @media (max-width: 500px) {
+    padding-top: 0;
+  }
 `;
 
 const Right = styled.div`
