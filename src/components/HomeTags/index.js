@@ -25,7 +25,7 @@ const HomeTags = () => {
             }}
             key={index}
           >
-            {tag}
+            <pre>{tag}</pre>
           </Tag>
         ))}
       </Content>

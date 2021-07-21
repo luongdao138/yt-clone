@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,15 +11,24 @@ import VideoFeed from '../components/VideoFeed';
 import VideoInfo from '../components/VideoInfo';
 import VideoThumbnail from '../components/VideoThumbnail';
 import { formatView } from '../helpers/formatNumber';
-import { fetchVideoDetail } from '../redux/reducers/videoDetailSlice';
+import {
+  fetchVideoDetail,
+  getMoreRelatedVideos,
+} from '../redux/reducers/videoDetailSlice';
 
 const VideoDetail = () => {
   const [showDesc, setShowDesc] = useState(false);
   const location = useLocation();
   const videoId = new URLSearchParams(location.search).get('v');
   const dispatch = useDispatch();
-  const { detail, loading } = useSelector((state) => state.videoDetail);
-  console.log(detail);
+  const { detail, loading, relatedVideos } = useSelector(
+    (state) => state.videoDetail
+  );
+
+  const fetchMoreRelatedVideos = () => {
+    dispatch(getMoreRelatedVideos({ videoId }));
+  };
+
   useEffect(() => {
     dispatch(fetchVideoDetail({ videoId }));
   }, [videoId]);
@@ -28,7 +38,14 @@ const VideoDetail = () => {
   return (
     <Wrapper>
       <VideoDescModal showDesc={showDesc}>
-        <DescModal setShowDesc={setShowDesc} title={detail.snippet?.title} />
+        <DescModal
+          setShowDesc={setShowDesc}
+          title={detail.snippet?.title}
+          likeCount={formatView(detail.statistics?.likeCount)}
+          viewCount={detail.statistics?.viewCount}
+          desc={detail.snippet?.description}
+          time={detail.snippet?.publishedAt}
+        />
       </VideoDescModal>
       <Left>
         <VideoThumbnail youtubeLink={`/${detail?.id}`} />
@@ -37,7 +54,6 @@ const VideoDetail = () => {
             <VideoInfo
               videoTitle={detail.snippet?.title}
               view={formatView(detail.statistics?.viewCount)}
-              release_date='Sep 24, 2017'
               release_date={moment(detail.snippet?.publishedAt).format('ll')}
               showDesc={showDesc}
               likeCount={formatView(detail.statistics?.likeCount)}
@@ -45,31 +61,52 @@ const VideoDetail = () => {
               setShowDesc={setShowDesc}
             />
             <VideoChannel
-              image='https://yt3.ggpht.com/ytc/AKedOLQPwQ8OrCuTjD4I4IPXph9X1kPZk4nSssROgpNzIA=s88-c-k-c0x00ffffff-no-rj'
+              image={detail.channelData?.snippet?.thumbnails.medium.url}
               channelName={detail.snippet?.channelTitle}
-              subscriber='7.36k'
+              subscriber={formatView(
+                detail.channelData?.statistics?.subscriberCount
+              )}
               isSubscribe={false}
+              desc={detail.snippet?.description}
             />
           </>
         )}
       </Left>
       {!showDesc && (
         <Right>
-          {/* <Grid>
-            {[...new Array(10)].map((_, index) => (
-              <VideoFeed
-                key={index}
-                image='https://i.ytimg.com/vi/IdkcGXZU6vo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBF2GkxIeBSIW-RrDqbnLWqwkVb2A'
-                duration='41:32'
-                chanelImage='https://yt3.ggpht.com/ytc/AKedOLTKFq-spzNWb84uFEZbJdHM-s6C_nkw3_Gmm_l9=s68-c-k-c0x00ffffff-no-rj'
-                title='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
-                channelName='Uni Drama'
-                view='1M'
-                release_time='3 weeks ago'
-                horizontal={true}
-              />
-            ))}
-          </Grid> */}
+          <InfiniteScroll
+            dataLength={relatedVideos.list.length}
+            hasMore={
+              relatedVideos.list.length < relatedVideos.pageInfo.totalResults
+            }
+            next={fetchMoreRelatedVideos}
+            loader={<h4>Loading...</h4>}
+            endMessage={
+              <p style={{ textAlign: 'center' }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
+            <Grid>
+              {relatedVideos.list
+                .filter((x) => x.snippet)
+                .map((relatedVideo, index) => (
+                  <VideoFeed
+                    id={relatedVideo.id.videoId}
+                    channelId={relatedVideo.snippet?.channelId}
+                    key={relatedVideo.id.videoId + index}
+                    image={relatedVideo.snippet?.thumbnails.medium.url}
+                    title={relatedVideo.snippet?.title}
+                    channelName={relatedVideo.snippet?.channelTitle}
+                    release_time={moment(
+                      relatedVideo.snippet?.publishedAt
+                    ).fromNow()}
+                    horizontal
+                    isRelatedVideo
+                  />
+                ))}
+            </Grid>
+          </InfiniteScroll>
         </Right>
       )}
     </Wrapper>

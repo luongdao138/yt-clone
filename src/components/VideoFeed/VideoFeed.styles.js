@@ -92,7 +92,7 @@ export const InfoText = styled.span`
   font-size: ${({ horizontal }) => (horizontal ? '13px' : '14px')};
 
   @media (max-width: 450px) {
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 export const Detail = styled.div`

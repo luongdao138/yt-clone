@@ -9,7 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { getHomeVideos } from '../../redux/reducers/homeVideosSlice';
 
 const HomeFeed = () => {
-  const { loading, list, error, keyword } = useSelector(
+  const { loading, list, error, keyword, pageInfo } = useSelector(
     (state) => state.homeVideos
   );
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const HomeFeed = () => {
       <InfiniteScroll
         dataLength={list.length}
         next={fetchData}
-        hasMore={true}
+        hasMore={list.length < pageInfo.totalResults}
         loader={<h4>Loading...</h4>}
         endMessage={
           <p style={{ textAlign: 'center' }}>

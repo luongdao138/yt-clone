@@ -28,43 +28,23 @@ const VideoFeed = ({
   release_time,
   view,
   horizontal,
+  isRelatedVideo,
 }) => {
   const { keyword } = useSelector((state) => state.homeVideos);
-  // const [durationTime, setDurationTime] = useState('');
-  // const [viewCount, setViewCount] = useState('');
-  // const [channelImage, setChannelImage] = useState('');
   const { durationTime, viewCount, channelImage } = useVideoInfo(
     id,
-    keyword,
-    channelId
+    !isRelatedVideo ? keyword : '',
+    channelId,
+    isRelatedVideo
   );
-
-  // useEffect(() => {
-  //   if (keyword !== 'All') {
-  //     const getVideoInfo = async () => {
-  //       try {
-  //         const { data } = await axiosInstance.get('/videos', {
-  //           params: {
-  //             part: 'contentDetails,statistics',
-  //             id,
-  //           },
-  //         });
-  //         const [video] = data.items;
-  //         setDurationTime(ytDurationFormat(video.contentDetails.duration));
-  //         setViewCount(formatView(video.statistics.viewCount));
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     getVideoInfo();
-  //   }
-  // }, [id]);
 
   return (
     <Wrapper horizontal={horizontal}>
       <ThumbnailWrapper to={`/watch?v=${id}`} horizontal={horizontal}>
         <Thumbnail src={image} />
-        <span>{keyword === 'All' ? duration : durationTime}</span>
+        <span>
+          {keyword === 'All' && !isRelatedVideo ? duration : durationTime}
+        </span>
       </ThumbnailWrapper>
       <InfoWrapper horizontal={horizontal}>
         <ChannelLink horizontal={horizontal} to='/'>
@@ -77,7 +57,7 @@ const VideoFeed = ({
             <Divider disappear />
             <Detail>
               <InfoText horizontal={horizontal}>
-                {keyword === 'All' ? view : viewCount} views
+                {keyword === 'All' && !isRelatedVideo ? view : viewCount} views
               </InfoText>
               <Divider />
               <InfoText horizontal={horizontal}>{release_time}</InfoText>

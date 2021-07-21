@@ -13,7 +13,13 @@ import {
 } from './VideoChannel.styles';
 import ShowMoreText from 'react-show-more-text';
 
-const VideoChannel = ({ image, channelName, subscriber, isSubscribe }) => {
+const VideoChannel = ({
+  image,
+  channelName,
+  subscriber,
+  isSubscribe,
+  desc,
+}) => {
   return (
     <Wrapper>
       <Content>
@@ -35,19 +41,7 @@ const VideoChannel = ({ image, channelName, subscriber, isSubscribe }) => {
           less={<Show>Show less</Show>}
           expanded={false}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eaque
-          modi distinctio sit, recusandae dicta iste itaque! Perspiciatis
-          eveniet libero eligendi quia minima, vel laboriosam! Ipsum, ratione
-          excepturi temporibus eum modi labore quisquam natus? Porro accusantium
-          deserunt quibusdam, placeat amet eveniet? Reiciendis consectetur
-          ducimus omnis architecto? Aliquam consequatur excepturi earum alias
-          autem saepe, corporis, debitis, a doloremque accusamus quia dolores
-          laudantium aut dolor molestiae provident repellat id perspiciatis
-          voluptatem! Reiciendis ducimus explicabo voluptates corporis mollitia,
-          recusandae consectetur vero nihil porro delectus, necessitatibus quo
-          voluptatum dicta, cupiditate illum expedita. Error earum pariatur
-          ipsum assumenda quisquam distinctio perspiciatis ullam doloribus
-          asperiores amet.
+          {desc}
         </ShowMoreText>
       </Description>
     </Wrapper>

@@ -3,13 +3,13 @@ import { formatView } from '../helpers/formatNumber';
 import ytDurationFormat from 'youtube-duration-format';
 import axiosInstance from '../helpers/axios';
 
-const useVideoInfo = (videoId, keyword, channelId) => {
+const useVideoInfo = (videoId, keyword, channelId, isRelatedVideo) => {
   const [durationTime, setDurationTime] = useState('');
   const [viewCount, setViewCount] = useState('');
   const [channelImage, setChannelImage] = useState('');
 
   useEffect(() => {
-    if (keyword !== 'All') {
+    if (keyword !== 'All' || isRelatedVideo) {
       const getVideoInfo = async () => {
         try {
           const { data } = await axiosInstance.get('/videos', {
@@ -19,8 +19,10 @@ const useVideoInfo = (videoId, keyword, channelId) => {
             },
           });
           const [video] = data.items;
-          setDurationTime(ytDurationFormat(video.contentDetails.duration));
-          setViewCount(formatView(video.statistics.viewCount));
+          if (video) {
+            setDurationTime(ytDurationFormat(video?.contentDetails?.duration));
+            setViewCount(formatView(video?.statistics?.viewCount));
+          }
         } catch (error) {
           console.log(error);
         }
@@ -44,7 +46,9 @@ const useVideoInfo = (videoId, keyword, channelId) => {
       }
     };
 
-    getChannelInfo();
+    if (channelId) {
+      getChannelInfo();
+    }
   }, [channelId]);
 
   return {

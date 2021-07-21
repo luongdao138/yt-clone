@@ -55,6 +55,10 @@ export const getHomeVideosByKeyword = createAsyncThunk(
 
 const initialState = {
   list: [],
+  pageInfo: {
+    totalResults: 0,
+    resultsPerPage: 0,
+  },
   nextPageToken: '',
   loading: false,
   error: null,
@@ -77,6 +81,7 @@ const homeVideosSlice = createSlice({
       else state.list = payload.data.items;
 
       state.nextPageToken = payload.data.nextPageToken;
+      state.pageInfo = payload.data.pageInfo;
       state.keyword = payload.keyword;
     },
     [getHomeVideos.rejected]: (state, { payload }) => {
