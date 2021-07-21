@@ -26,7 +26,14 @@ import { AiOutlineDownload } from 'react-icons/ai';
 import { BiAddToQueue } from 'react-icons/bi';
 import { BsChevronDown } from 'react-icons/bs';
 
-const VideoInfo = ({ videoTitle, view, release_date, setShowDesc }) => {
+const VideoInfo = ({
+  videoTitle,
+  view,
+  release_date,
+  setShowDesc,
+  likeCount,
+  dislikeCount,
+}) => {
   return (
     <>
       {/* {showDesc && <VideoDescModal></VideoDescModal>} */}
@@ -46,11 +53,11 @@ const VideoInfo = ({ videoTitle, view, release_date, setShowDesc }) => {
           <IconWrapper>
             <Icon fontsize='24px' border>
               <MdThumbUp />
-              <span>9.6K</span>
+              <span>{likeCount}</span>
             </Icon>
             <Icon fontsize='24px' border>
               <MdThumbDown />
-              <span>67</span>
+              <span>{dislikeCount}</span>
             </Icon>
             <Icon fontsize='28px'>
               <IoMdShareAlt />

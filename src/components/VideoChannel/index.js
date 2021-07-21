@@ -19,7 +19,7 @@ const VideoChannel = ({ image, channelName, subscriber, isSubscribe }) => {
       <Content>
         <Left>
           <ChannelLink to='/'>
-            <img src={image} alt='channel image' />
+            <img src={image} alt='' />
           </ChannelLink>
           <Detail>
             <ChannelName to='/'>{channelName}</ChannelName>

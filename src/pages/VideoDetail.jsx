@@ -1,37 +1,52 @@
-import React from 'react';
+import moment from 'moment';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import DescModal from '../components/DescModal';
 import VideoChannel from '../components/VideoChannel';
 import VideoFeed from '../components/VideoFeed';
 import VideoInfo from '../components/VideoInfo';
 import VideoThumbnail from '../components/VideoThumbnail';
+import { formatView } from '../helpers/formatNumber';
+import { fetchVideoDetail } from '../redux/reducers/videoDetailSlice';
 
 const VideoDetail = () => {
   const [showDesc, setShowDesc] = useState(false);
+  const location = useLocation();
+  const videoId = new URLSearchParams(location.search).get('v');
+  const dispatch = useDispatch();
+  const { detail, loading } = useSelector((state) => state.videoDetail);
+  console.log(detail);
+  useEffect(() => {
+    dispatch(fetchVideoDetail({ videoId }));
+  }, [videoId]);
+
+  if (loading) return <Wrapper>Loading...</Wrapper>;
 
   return (
     <Wrapper>
       <VideoDescModal showDesc={showDesc}>
-        <DescModal
-          setShowDesc={setShowDesc}
-          title='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
-        />
+        <DescModal setShowDesc={setShowDesc} title={detail.snippet?.title} />
       </VideoDescModal>
       <Left>
-        <VideoThumbnail youtubeLink='/TsUjSkzQ9ko' />
+        <VideoThumbnail youtubeLink={`/${detail?.id}`} />
         {!showDesc && (
           <>
             <VideoInfo
-              videoTitle='TỔNG GIÁM ĐỐC MỚI CỦA TÔI TẬP 1 | Địch Lệ Nhiệt Ba | Phim Bộ Trung Quốc Hay Nhất 2021'
-              view='2.4M'
+              videoTitle={detail.snippet?.title}
+              view={formatView(detail.statistics?.viewCount)}
               release_date='Sep 24, 2017'
+              release_date={moment(detail.snippet?.publishedAt).format('ll')}
               showDesc={showDesc}
+              likeCount={formatView(detail.statistics?.likeCount)}
+              dislikeCount={formatView(detail.statistics?.dislikeCount)}
               setShowDesc={setShowDesc}
             />
             <VideoChannel
               image='https://yt3.ggpht.com/ytc/AKedOLQPwQ8OrCuTjD4I4IPXph9X1kPZk4nSssROgpNzIA=s88-c-k-c0x00ffffff-no-rj'
-              channelName='BLV Anh Quân'
+              channelName={detail.snippet?.channelTitle}
               subscriber='7.36k'
               isSubscribe={false}
             />
@@ -40,7 +55,7 @@ const VideoDetail = () => {
       </Left>
       {!showDesc && (
         <Right>
-          <Grid>
+          {/* <Grid>
             {[...new Array(10)].map((_, index) => (
               <VideoFeed
                 key={index}
@@ -54,7 +69,7 @@ const VideoDetail = () => {
                 horizontal={true}
               />
             ))}
-          </Grid>
+          </Grid> */}
         </Right>
       )}
     </Wrapper>

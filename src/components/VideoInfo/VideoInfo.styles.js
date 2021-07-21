@@ -89,6 +89,10 @@ export const Icon = styled.li`
   svg {
     font-size: ${({ fontsize }) => fontsize};
     margin-right: 5px;
+
+    @media (max-width: 750px) {
+      font-size: 16px;
+    }
   }
 
   span {
