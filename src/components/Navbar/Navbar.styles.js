@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdMic, MdMenu } from 'react-icons/md';
 import { BsArrowLeft } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 export const Wrapper = styled.div`
   position: fixed;
   top: 0;
@@ -54,7 +55,7 @@ export const Menu = styled(MdMenu)`
   }
 `;
 
-export const Logo = styled.a`
+export const Logo = styled(Link)`
   display: flex;
   height: 100%;
   align-items: center;

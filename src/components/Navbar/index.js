@@ -32,7 +32,7 @@ const Navbar = ({ disappearNavbar }) => {
           <>
             <Section>
               <Menu onClick={openSidebar} />
-              <Logo href='/'>
+              <Logo to='/'>
                 <LogoIcon src={YTLogo} />
                 <LogoText>Youtube</LogoText>
               </Logo>
